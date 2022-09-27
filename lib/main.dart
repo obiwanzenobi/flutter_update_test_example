@@ -5,13 +5,15 @@ import 'package:update_example/home_page.dart';
 
 const prefsKey = 'key';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
 
-  if (!prefs.containsKey(prefsKey)) {
-    await prefs.setString(prefsKey, 'NEW');
+  if (prefs.containsKey(prefsKey)) {
+    await prefs.setString(prefsKey, 'UPDATED');
+  } else {
+    await prefs.setString(prefsKey, 'NEWv1.1');
   }
 
   runApp(
